@@ -1,68 +1,51 @@
-public interface CompanyEmpWage {
-public void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth);
-         public void computeEmpWage();
-         public int computeEmpWage(CompanyEmpWage companyEmpWage);
-}
-public class CompanyEmpWage{
-
-        public final String company;
-        public final int empRatePerHour;
-        public final int numOfWorkingDays;
-        public final int maxHoursPerMonth;
-
-        public int totalEmpWage;
-
-        public CompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
-                this.company = company;
-                this.empRatePerHour = empRatePerHour;
-                this.numOfWorkingDays = numOfWorkingDays;
-                this.maxHoursPerMonth = maxHoursPerMonth;
-        }
-
-        public void setTotalEmpWage(int totalEmpWage) {
-                this.totalEmpWage = totalEmpWage;
-        }
-
-        @Override
-        public String toString() {
-                return "Total Emp Wage for Company: "+company+" is "+totalEmpWage;
-        }
-
-}
+import java.util.LinkedList;
 
 import java.util.Random;
 
-public class EmployeeWageBuilder {
+public class EmployeeWageBuilder implements IComputeEmpWage  {
 
         public static final int IS_PART_TIME=1;
         public static final int IS_FULL_TIME=2;
 
         public int numOfCompany=0;
 
-        CompanyEmpWage companyEmpWage[];
+        private LinkedList<CompanyEmpWage> companyEmpWageList;
+
+
+
+        //CompanyEmpWage companyEmpWage[];
 
         public EmployeeWageBuilderArray()
         {
-                companyEmpWage=new CompanyEmpWage[5];
+                companyEmpWageList= new LinkedList<CompanyEmpWage>();
+
+
+                //companyEmpWage=new CompanyEmpWage[5];
         }
 
-        private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth)
-        {
-                companyEmpWage[numOfCompany]=new CompanyEmpWage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
-                numOfCompany++;
+        public void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth)
+ {
+                CompanyEmpWage companyEmpWage=new CompanyEmpWage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
+
+                companyEmpWageList.add(companyEmpWage);
+
+
+
         }
 
-        private void computeEmpWage()
+        public void computeEmpWage()
         {
-                for (int i = 0; i <numOfCompany; i++)
+                for (int i = 0; i <companyEmpWageList.size(); i++)
                 {
-                        companyEmpWage[i].setTotalEmpWage(this.computeEmpWage(companyEmpWage[i]));
-                        System.out.println(companyEmpWage[i]);
+                                CompanyEmpWage company=companyEmpWageList.get(i);
+                                company.setTotalEmpWage(this.computeEmpWage(company));
+                                System.out.println(company);
+
                 }
         }
 
 
-        private int computeEmpWage(CompanyEmpWage companyEmpWage)
+ public int computeEmpWage(CompanyEmpWage companyEmpWage)
         {
         int empHrs=0,totalEmpHrs=0,totalWorkingDays=0;
         Random random=new Random();
@@ -77,7 +60,8 @@ public class EmployeeWageBuilder {
                 case IS_PART_TIME:
                         empHrs=4;
                         break;
-case IS_FULL_TIME:
+
+                case IS_FULL_TIME:
                         empHrs=8;
                         break;
                 default:
@@ -86,6 +70,7 @@ case IS_FULL_TIME:
                 totalEmpHrs+=empHrs;
                 System.out.println("day: "+totalWorkingDays + "EmpHrs: "+empHrs);
                 }
+
 
         return totalEmpHrs * companyEmpWage.empRatePerHour;
         }
@@ -97,6 +82,9 @@ case IS_FULL_TIME:
                 empWageBuilder.addCompanyEmpWage("Reliance", 10, 4, 20);
                 empWageBuilder.computeEmpWage();
         }
-}
-}
 
+
+
+        }
+
+}
