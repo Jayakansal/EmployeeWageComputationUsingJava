@@ -11,11 +11,17 @@ public class EmployeeWage {
                         int randomNum=random.nextInt(2);
 
 if (randomNum==1) {
-        System.out.println("Employee is Present");
+System.out.println("Employee is Present");
+int EmpHur=8;
+int ratePerHur=20;
+System.out.println("Salary:(int EmpHur* int ratePerHur)}");
+
+} else {
+System.out.println("Employee is Absent");
+System.out.println("Salary:+0");
 }
- else {
-        System.out.println("Employee is Absent");
-        }
-        }
+}
+}
+
 
 }
