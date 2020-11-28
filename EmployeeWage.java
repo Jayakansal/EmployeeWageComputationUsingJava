@@ -7,31 +7,35 @@ public class PartTimeORFullTime {
   System.out.println("Welcome to Employee Wage Computation Using Java");
 
 
-                int PartTime=1;
+               int PartTime=1;
                 int FullTime=2;
                 int EmpRatePerHr=20;
-                int EmpHur=0;
-
+                double Salary;
+                int absent=0;
+                int partTimeHour=4;
+                int fullTimeHour=8;
                 Random random=new Random();
                 int randomNum=random.nextInt(3);
-                if (randomNum==1)
-                {
-                 EmpHur=4;
-                }
-                else if (randomNum==2) {
-                 EmpHur=8;
-                }
-                else {
-                         EmpHur=0;
-                }
+                int EmpHur;
+                switch (randomNum) {
+                case 1:
+                        int partTimeWage=(partTimeHour*EmpRatePerHr);
+                        System.out.println("Part Time Employee " +partTimeWage);
+                        break;
+                case 2:
+                        int fullTimeWage=(fullTimeHour*EmpRatePerHr);
+                        System.out.println("Full Time Employee " +fullTimeWage);
+                        break;
 
-                System.out.println("Employee Hours"+ EmpHur);
-                System.out.println("Salary:"+( EmpHur*EmpRatePerHr));
-
-
+                default:
+                        System.out.println("Absent"+ absent);
+                        break;
                 }
 
 
         }
+        }
+
+     
 
 
