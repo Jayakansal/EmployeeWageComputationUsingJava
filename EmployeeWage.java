@@ -1,29 +1,35 @@
 import java.util.Random;
 
-public class PartTimeORFullTime {
+public class Monthly Wage {
 
       public static void  main (String[] args)
 {
   System.out.println("Welcome to Employee Wage Computation Using Java");
 
 
-               int PartTime=1;
-                int FullTime=2;
+                int partTimeHours=4;
+                int fullTimeHours=8;
+                int FullTime=8;
                 int EmpRatePerHr=20;
-                double Salary;
-                int absent=0;
-                int partTimeHour=4;
-                int fullTimeHour=8;
-                Random random=new Random();
-                int randomNum=random.nextInt(3);
-                int EmpHur;
-                switch (randomNum) {
+        double Salary;
+        int absent=0;
+       int WorkingDays=20;
+       int day;
+       int EmpHur;
+
+
+      for ( day= 1; day< WorkingDays; day++) {
+
+           Random random=new Random();
+           int randomNum=random.nextInt(3);
+
+           switch (randomNum) {
                 case 1:
-                        int partTimeWage=(partTimeHour*EmpRatePerHr);
+                        int partTimeWage=(partTimeHours*EmpRatePerHr);
                         System.out.println("Part Time Employee " +partTimeWage);
                         break;
                 case 2:
-                        int fullTimeWage=(fullTimeHour*EmpRatePerHr);
+                        int fullTimeWage=(fullTimeHours*EmpRatePerHr);
                         System.out.println("Full Time Employee " +fullTimeWage);
                         break;
 
@@ -32,9 +38,10 @@ public class PartTimeORFullTime {
                         break;
                 }
 
+}
+        }
+}
 
-        }
-        }
 
      
 
