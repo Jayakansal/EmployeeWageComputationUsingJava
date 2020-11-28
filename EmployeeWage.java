@@ -1,6 +1,38 @@
+public interface CompanyEmpWage {
+public void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth);
+         public void computeEmpWage();
+         public int computeEmpWage(CompanyEmpWage companyEmpWage);
+}
+public class CompanyEmpWage{
+
+        public final String company;
+        public final int empRatePerHour;
+        public final int numOfWorkingDays;
+        public final int maxHoursPerMonth;
+
+        public int totalEmpWage;
+
+        public CompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+                this.company = company;
+                this.empRatePerHour = empRatePerHour;
+                this.numOfWorkingDays = numOfWorkingDays;
+                this.maxHoursPerMonth = maxHoursPerMonth;
+        }
+
+        public void setTotalEmpWage(int totalEmpWage) {
+                this.totalEmpWage = totalEmpWage;
+        }
+
+        @Override
+        public String toString() {
+                return "Total Emp Wage for Company: "+company+" is "+totalEmpWage;
+        }
+
+}
+
 import java.util.Random;
 
-public class EmployeeWageBuilderArray {
+public class EmployeeWageBuilder {
 
         public static final int IS_PART_TIME=1;
         public static final int IS_FULL_TIME=2;
@@ -43,10 +75,9 @@ public class EmployeeWageBuilderArray {
                 switch(empCheck)
                 {
                 case IS_PART_TIME:
- empHrs=4;
+                        empHrs=4;
                         break;
-
-                case IS_FULL_TIME:
+case IS_FULL_TIME:
                         empHrs=8;
                         break;
                 default:
@@ -66,5 +97,6 @@ public class EmployeeWageBuilderArray {
                 empWageBuilder.addCompanyEmpWage("Reliance", 10, 4, 20);
                 empWageBuilder.computeEmpWage();
         }
+}
 }
 
